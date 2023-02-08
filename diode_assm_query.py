@@ -14,7 +14,7 @@ config = ujson.load(open('diode_config.json', 'r'))
 
 
 def get_adc(params):
-    #print(params)
+
     if params[0].isdigit():
         index = int(params[0]) - 1 #1-10 give respective diode board, 0 gives index -1 which means all boards, does not exceed max length
         
@@ -38,10 +38,10 @@ def get_adc(params):
         
         else:  #  handle all other numbers
             result = 'invalid sensor number for v?'
-            return result
+            return {'error':result}
         
     else:
-        key = ''.join(params)
+        key = params[0]
         if key in sensor_dict:
 
             if sensor_dict[key]['mux'] != None:
@@ -52,7 +52,7 @@ def get_adc(params):
             return result
         else:
             result = 'invalid name of the channel for v?'
-        return result  
+        return {'error':result}
                 
             
 #Funciton Builds Sensor dict
