@@ -125,14 +125,5 @@ def do_command(cmd):
             writeUSB('not understood')
 
 
-
-def find_subkey(d, key_value):
-    result = []
-    for key, subdict in d.items():
-        for sublist in subdict.items():
-            if sublist == ('mux port', key_value):
-                return key, sublist
-    return 'key value DNE'
-
 while True:
     readUSB()
